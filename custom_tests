@@ -1,0 +1,84 @@
+# File: custom_tests
+# ------------------
+# This file contains a list of custom tests to be run by the sanity check tool.
+# Refer to the "how to work on assignments" page on the course website for more information.
+#
+# Below are example custom tests, you can edit this file to change or add new tests.
+
+myprintenv HOME
+tokenize ", " "red, green, blue,orange, yellow"
+mywhich
+
+#my tests
+
+  #myprintenv
+    #correctly handle a single request
+    myprintenv USER
+
+    #handle several requests
+    myprintenv USER HOME PATH
+
+    #handle a bogus argument
+    myprintenv GOBBLYGOOK
+
+    #now there are several good and bad requests
+    myprintenv PATH USER BLORP SHMOOFLE HOME
+
+    #unfortunately i can't use env here so I'll just try it on my own and see if it seems to work
+      #use env to change an environment variable
+      #env USER=jackiechan myprintenv USER
+
+      #use env to create a new environment variable
+      #env BEST_MOVIE=rushhour myprintenv
+    #^^they worked
+
+    #no arguments
+    #SIKE the below test fails but it's not my fault so i dont care!!!
+    #myprintenv
+
+  #tokenize
+    #just a typical string to tokenize
+    tokenize " " "i am a string"
+
+    #tokenize based on a different delimiter
+    tokenize "torple" "itorpleamtorpleatorplestring"
+
+    #handle leading delimiters, repeated delimiters, and ending delimiters
+    tokenize "-" "----------i-am------a---------------------string-----------------"
+
+    #no delimiters present
+    tokenize "-" "i am a single token!"
+
+    #no delimiters at all!
+    tokenize "" "i honestly don't even know what's gonna happen"
+
+    #no string at all
+    tokenize " " ""
+
+    #no nothing at all
+    tokenize "" ""
+
+  #mywhich
+    #no arguments
+    mywhich
+
+    #one argument
+    mywhich ls
+
+    #one argument that has several locations, but should only pass back the first!
+    mywhich which
+
+    #bogus argument
+    mywhich sneeze
+
+    #several arguments
+    mywhich ls man which
+
+    #several legit and several bogus arguments
+    mywhich bogus ls applesauce man
+
+    #several of the same argument
+    mywhich man man man man man man
+
+    #several of the same bogus argument
+    mywhich ginger ginger ginger
